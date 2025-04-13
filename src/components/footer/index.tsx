@@ -13,7 +13,7 @@ const Footer = () => {
               <a
                 key={item.title}
                 href={item.href}
-                className="inline-flex items-center gap-1.5 transition-transform duration-300 ease-in-out transform  hover:scale-105 hover:text-blue-300"
+                className="inline-flex items-center gap-1.5 transition-transform duration-300 ease-in-out transform  hover:scale-105 hover:text-orange-400"
                 target="_blank"
                 rel="noopener noreferrer"
               >
