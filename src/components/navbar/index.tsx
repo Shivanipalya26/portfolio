@@ -2,33 +2,55 @@
 
 import { useState } from "react";
 import { X, Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const shouldHideNavbar = pathname.startsWith("/blogs");
+  if (shouldHideNavbar) return null;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  interface NavClickEvent
-    extends React.MouseEvent<HTMLAnchorElement, MouseEvent> {}
-
-  const handleNavClick = (e: NavClickEvent) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
     setIsMenuOpen(false);
+
+    e.preventDefault();
+
+    const targetId = e.currentTarget.getAttribute("href")?.substring(1);
+    const targetElement = document.getElementById(targetId || "");
+
+    targetElement?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
-  const navOptions = ["Home", "About", "Projects", "Contact"]
+  const navOptions = ["Home", "About", "Projects", "Blogs"];
 
   return (
     <div className="fixed w-full p-4 z-10">
       <div className="hidden md:flex justify-between items-center">
         <div className="flex flex-1 justify-center">
           <nav className="flex gap-8 px-8 py-3 border border-white/15 rounded-full bg-white/10 backdrop-blur-xl">
-            {navOptions.map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} onClick={handleNavClick}>
-                    {item}
+            {navOptions.map((item) => {
+              const isBlog = item === "Blogs";
+              const href = isBlog ? "/blogs" : `#${item.toLowerCase()}`;
+              return (
+                <a
+                  key={item}
+                  href={href}
+                  onClick={isBlog ? undefined : handleNavClick}
+                >
+                  {item}
                 </a>
-            ))}
+              );
+            })}
           </nav>
         </div>
       </div>
@@ -63,25 +85,27 @@ const NavBar = () => {
           ${isMenuOpen ? "translate-y-0" : "-translate-y-10"}
         `}
         >
-          {navOptions.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-l font-semibold w-64 text-center py-3 px-6
+          {navOptions.map((item) => {
+            const isBlog = item === "Blogs";
+            const href = isBlog ? "/blogs" : `#${item.toLowerCase()}`;
+            return (
+              <a
+                key={item}
+                href={href}
+                className="text-l font-semibold w-64 text-center py-3 px-6
                 rounded-lg bg-white/10 backdrop-blur-md
                 transition-all duration-300 ease-in-out
                 ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
                 hover:bg-white/20"
-              style={{
-                transitionDelay: `${
-                  ["Home", "Projects", "About", "Contact"].indexOf(item) * 50
-                }ms`,
-              }}
-              onClick={handleNavClick}
-            >
-              {item}
-            </a>
-          ))}
+                style={{
+                  transitionDelay: `${navOptions.indexOf(item) * 50}ms`,
+                }}
+                onClick={isBlog ? undefined : handleNavClick}
+              >
+                {item}
+              </a>
+            );
+          })}
         </nav>
       </div>
     </div>
