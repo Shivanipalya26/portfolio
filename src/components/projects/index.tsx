@@ -48,7 +48,7 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  <p className="text-gray-300 text-justify tracking-wider">
+                  <p className="text-gray-300 text-justify tracking-wider md:tracking-widest">
                     {project.description}
                   </p>
 

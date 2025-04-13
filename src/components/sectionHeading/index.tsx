@@ -15,10 +15,10 @@ const SectionHeading: FC<SectionHeadingProps> = ({
     <div className="text-center space-y-2">
       <h1 className="text-3xl md:text-4xl font-bold">{title}</h1>
       {subtitle && (
-        <h2 className="text-xl md:text-2xl font-semibold">{subtitle}</h2>
+        <h2 className="text-xl md:text-2xl font-semibold pt-4">{subtitle}</h2>
       )}
       {description && (
-        <p className="text-md md:text-lg max-w-xl mx-auto">{description}</p>
+        <p className="text-md md:text-lg max-w-xl mx-auto tracking-wider ">{description}</p>
       )}
     </div>
   );
