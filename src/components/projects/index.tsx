@@ -53,14 +53,14 @@ const Projects = () => {
                   </p>
 
                   <div>
-                    <h3 className="font-medium text-gray-400 pt-3">
+                    <h3 className="font-medium text-gray-400 pt-2">
                       Tech Stack:
                     </h3>
                     <ul className="flex flex-wrap gap-2 mt-1">
                       {project.technologies.map((tech, index) => (
                         <li
                           key={index}
-                          className="bg-orange-100 text-orange-700 text-sm px-3 py-1 rounded-full"
+                          className="bg-orange-100/80 text-orange-800 text-sm px-4 py-1.5 rounded-full shadow-sm hover:shadow-md transition-shadow duration-200"
                         >
                           {tech}
                         </li>

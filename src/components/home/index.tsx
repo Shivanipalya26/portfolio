@@ -46,14 +46,14 @@ const HomeSection = () => {
               <div className="space-y-2 mb-4 pt-4">
                 <h2 className=" text-orange-400">Languages</h2>
                 <p className="text-gray-300">
-                  TypeScript, JavaScript, Python, C++
+                  TypeScript, JavaScript, Python, C++, Golang
                 </p>
               </div>
 
               <div className="space-y-2 mb-4">
                 <h2 className=" text-orange-400">Frameworks & Libraries</h2>
                 <p className="text-gray-300">
-                  React, Next.js, Node.js, Express, Tailwind CSS, Redux
+                  React, Next.js, Node.js, Express, Tailwind CSS, Redux, Zustand
                 </p>
               </div>
 
